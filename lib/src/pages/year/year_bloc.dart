@@ -1,27 +1,33 @@
+import 'dart:async';
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:show_me_the_price/src/components/main_list_component.dart';
 
 class YearBloc{
-  Future<Widget> getYears(String type, String mark, String model) async {
+  List<dynamic> list = [];
+  List<dynamic> listByName = [];
+
+  final _listController = StreamController<List<dynamic>>();
+
+  StreamController<List<dynamic>> get listController => _listController;
+
+  getYears(String type, String mark, String model) async {
     var url = Uri.https('parallelum.com.br',
         'fipe/api/v1/$type/marcas/$mark/modelos/$model/anos');
     var response = await http.get(url);
-    var lista = jsonDecode(response.body);
-    print(lista);
-    return MainListComponent(lista: lista, route: '/price',type: type,mark: mark, model: model,);
+    list = jsonDecode(response.body);
+    _listController.add(list);
   }
 
-  Widget responseFuture(AsyncSnapshot snapshot) {
-    if (snapshot.hasData) {
-      return Center(
-        child: snapshot.data,
-      );
-    } else {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+  getYearByName(String name) {
+    listByName = [];
+    for (var element in list) {
+      String nome = element['nome'];
+      if (nome.toLowerCase().contains(name.toLowerCase())) {
+        listByName.add({
+          'nome': element['nome'],
+          'codigo': element['codigo'],});
+      }
     }
+    _listController.add(listByName);
   }
 }

@@ -1,26 +1,34 @@
+import 'dart:async';
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:show_me_the_price/src/components/main_list_component.dart';
 
-class ModelBloc{
-  Future<Widget> getModels(String type, String mark) async {
-    var url = Uri.https('parallelum.com.br',
-        'fipe/api/v1/$type/marcas/$mark/modelos');
+class ModelBloc {
+  List<dynamic> list = [];
+  List<dynamic> listByName = [];
+
+  final _listController = StreamController<List<dynamic>>();
+
+  StreamController<List<dynamic>> get listController => _listController;
+
+  getModels(String type, String mark) async {
+    var url = Uri.https(
+        'parallelum.com.br', 'fipe/api/v1/$type/marcas/$mark/modelos');
     var response = await http.get(url);
-    var lista = jsonDecode(response.body)['modelos'];
-    return MainListComponent(lista: lista, route: '/year',type: type,mark: mark,);
+    list = jsonDecode(response.body)['modelos'];
+    _listController.add(list);
   }
 
-  Widget responseFuture(AsyncSnapshot snapshot) {
-    if (snapshot.hasData) {
-      return Center(
-        child: snapshot.data,
-      );
-    } else {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+  getModelsByName(String name) {
+    listByName = [];
+    for (var element in list) {
+      String nome = element['nome'];
+      if (nome.toLowerCase().contains(name.toLowerCase())) {
+        listByName.add({
+          'nome': element['nome'],
+          'codigo': element['codigo'],
+        });
+      }
     }
+    _listController.add(listByName);
   }
 }

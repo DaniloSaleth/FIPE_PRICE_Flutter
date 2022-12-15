@@ -9,16 +9,17 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: const [
-        HeaderComponent(),
-        HomeCardComponent(
-            type: 'motos', icon: Icons.motorcycle, nome: 'Motocicleta'),
-        HomeCardComponent(
-            type: 'carros', icon: CupertinoIcons.car_detailed, nome: 'Carro'),
-        HomeCardComponent(
-            type: 'caminhoes', icon: Icons.fire_truck, nome: 'Caminhão'),
-      ],
-    ));
+      body: Column(
+        children: const [
+          HeaderComponent(),
+          HomeCardComponent(
+              type: 'motos', icon: Icons.motorcycle, nome: 'Motocicleta'),
+          HomeCardComponent(
+              type: 'carros', icon: CupertinoIcons.car_detailed, nome: 'Carro'),
+          HomeCardComponent(
+              type: 'caminhoes', icon: Icons.fire_truck, nome: 'Caminhão'),
+        ],
+      ),
+    );
   }
 }
