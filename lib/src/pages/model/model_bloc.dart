@@ -24,7 +24,7 @@ class ModelBloc {
     for (var element in list) {
       String nome = element.nome;
       if (nome.toLowerCase().contains(name.toLowerCase())) {
-        listByName.add(Model(nome: element.nome, codigo: element.nome));
+        listByName.add(Model(nome: element.nome, codigo: element.codigo));
       }
     }
     _listController.add(listByName);
