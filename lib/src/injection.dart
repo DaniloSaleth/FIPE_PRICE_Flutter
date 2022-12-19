@@ -12,4 +12,5 @@ injection(){
   get.registerFactory(() => ModelBloc());
   get.registerFactory(() => YearBloc());
   get.registerFactory(() => PriceBloc());
+
 }

@@ -8,7 +8,6 @@ import 'package:show_me_the_price/src/pages/mark/mark_args.dart';
 import 'package:show_me_the_price/src/pages/mark/mark_bloc.dart';
 import 'package:show_me_the_price/src/pages/model/model_args.dart';
 
-
 class MarkPage extends StatefulWidget {
   const MarkPage({
     Key? key,
@@ -91,10 +90,10 @@ class _MarkPageState extends State<MarkPage> {
                           onTap: () => Navigator.pushNamed(
                             context,
                             '/model',
-                            arguments: ModelArgs(args.type, item['codigo']),
+                            arguments: ModelArgs(args.type, item.codigo),
                           ),
                           child: ListItemComponent(
-                            name: item['nome'],
+                            name: item.nome,
                           ),
                         );
                       },

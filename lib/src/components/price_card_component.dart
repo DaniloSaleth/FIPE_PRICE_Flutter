@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:show_me_the_price/src/models/price.dart';
 
 class PriceCardComponent extends StatelessWidget {
   const PriceCardComponent({
@@ -7,7 +8,7 @@ class PriceCardComponent extends StatelessWidget {
     required this.price,
   }) : super(key: key);
 
-  final dynamic price;
+  final Price price;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class PriceCardComponent extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.only(left: 32),
                   child: Text(
-                    price['Modelo'],
+                    price.Modelo,
                     textAlign: TextAlign.end,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
@@ -70,7 +71,7 @@ class PriceCardComponent extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  price['Marca'],
+                  price.Marca,
                   style: const TextStyle(
                     fontSize: 12,
                   ),
@@ -86,7 +87,7 @@ class PriceCardComponent extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  price['AnoModelo'].toString(),
+                  price.AnoModelo,
                   style: const TextStyle(
                     fontSize: 12,
                   ),
@@ -109,7 +110,7 @@ class PriceCardComponent extends StatelessWidget {
                   ),
                 ),
                 Text(
-                price['CodigoFipe'],
+                price.CodigoFipe,
                   style: const TextStyle(
                     fontSize: 12,
                   ),
@@ -132,7 +133,7 @@ class PriceCardComponent extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '${price['Combustivel']} - ${price['SiglaCombustivel']}',
+                  '${price.Combustivel} - ${price.SiglaCombustivel}',
                   style: const TextStyle(
                     fontSize: 12,
                   ),
@@ -159,7 +160,7 @@ class PriceCardComponent extends StatelessWidget {
                   ),
                 ),
                 Text(
-                price['MesReferencia'],
+                price.MesReferencia,
                   style: const TextStyle(
                     fontSize: 12,
                   ),
@@ -174,7 +175,7 @@ class PriceCardComponent extends StatelessWidget {
               ),
             ),
             Text(
-                price['Valor'],
+                price.Valor,
               style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,

@@ -4,6 +4,7 @@ import 'package:show_me_the_price/src/components/app_title_component.dart';
 import 'package:show_me_the_price/src/components/header_title_component.dart';
 import 'package:show_me_the_price/src/components/list_item_component.dart';
 import 'package:show_me_the_price/src/components/not_found_component.dart';
+import 'package:show_me_the_price/src/models/year.dart';
 import 'package:show_me_the_price/src/pages/price/price_args.dart';
 import 'package:show_me_the_price/src/pages/year/year_args.dart';
 import 'package:show_me_the_price/src/pages/year/year_bloc.dart';
@@ -70,7 +71,7 @@ class _YearPageState extends State<YearPage> {
             ),
           ),
           Expanded(
-            child: StreamBuilder<List<dynamic>>(
+            child: StreamBuilder<List<Year>>(
               stream: bloc.listController.stream,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
@@ -88,10 +89,10 @@ class _YearPageState extends State<YearPage> {
                           onTap: () => Navigator.pushNamed(
                             context,
                             '/price',
-                            arguments: PriceArgs(args.type, args.mark, args.model, item['codigo']),
+                            arguments: PriceArgs(args.type, args.mark, args.model, item.codigo),
                           ),
                           child: ListItemComponent(
-                            name: item['nome'],
+                            name: item.nome,
                           ),
                         );
                       },
